@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class ClickForScore : MonoBehaviour
 {
@@ -17,6 +18,11 @@ public class ClickForScore : MonoBehaviour
     public Button minionButton;
     public float second = 0.0f;
     public int secondInt = 1;
+    public int village = 0;
+    public TMP_Text villageText;
+    public GameObject villageBox;
+    public Button villageButton;
+    private float villagePower;
 
     //add villages at 10 oger pow
 
@@ -24,11 +30,12 @@ public class ClickForScore : MonoBehaviour
     {
         ogrePowButton.interactable = false;
         minionButton.interactable = false;
+        villageButton.interactable = false;
     }
 
     public void BugsOnClick()
     {
-        bugs += ogrePow;
+        bugs += ogrePow * (village + 1);
         bugsText.text = "Bugs: " + bugs;
 
         if (bugs >= ogrePow * 10)
@@ -48,8 +55,21 @@ public class ClickForScore : MonoBehaviour
         {
             bugs -= ogrePow * 10;
             ogrePow += 1;
+
             bugsText.text = "Bugs: " + bugs;
             ogrePowText.text = "Ogre Power: " + ogrePow;
+
+            villagePower = Mathf.Pow(village, village);
+
+            if (ogrePow >= villagePower * 10 + 10)
+            {
+                villageButton.interactable = true;
+            }
+
+            if (bugs <= 100 * minion + 100)
+            {
+                minionButton.interactable = false;
+            }
 
             if (bugs < ogrePow * 10)
             {
@@ -67,6 +87,11 @@ public class ClickForScore : MonoBehaviour
             minion += 1;
             bugsText.text = "Bugs: " + bugs;
             minionText.text = "Minion: " + minion;
+
+            if (bugs <= ogrePow * 10)
+            {
+                ogrePowButton.interactable = false;
+            }
 
             if (bugs < 100 * minion + 100)
             {
@@ -86,11 +111,30 @@ public class ClickForScore : MonoBehaviour
             second -= 1;
             bugsText.text = "Bugs: " + bugs;
 
-            if (bugs > 100 * minion + 100)
-            {
-                minionButton.interactable = true;
-            }            
+            // if (bugs > 100 * minion + 100)
+            // {
+            //     minionButton.interactable = true;
+            // }            
         }
         
+    }
+
+    public void VillageOnClick ()
+    {
+        if (ogrePow >= villagePower * 10 + 10)
+        {
+            bugs = 0;
+            ogrePow = 1;
+            minion = 0;
+            village += 1;
+            bugsText.text = "Bugs: " + bugs;
+            ogrePowText.text = "Ogre Power: " + ogrePow;
+            minionText.text = "Minion: " + minion;
+            villageText.text = "Village: " + village;
+
+            ogrePowButton.interactable = false;
+            minionButton.interactable = false;
+            villageButton.interactable = false;
+        }
     }
 }
