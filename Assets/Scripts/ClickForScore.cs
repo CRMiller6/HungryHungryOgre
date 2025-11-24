@@ -30,6 +30,7 @@ public class ClickForScore : MonoBehaviour
     public Button villageButton;
     public TMP_Text villageButtonText;
     private float villagePower;
+    private float villagePrint;
 
     //add villages at 10 oger pow
 
@@ -38,8 +39,8 @@ public class ClickForScore : MonoBehaviour
         ogrePowButton.interactable = false;
         minionButton.interactable = false;
         villageButton.interactable = false;
-        ogrePowButtText.text = "OGRE POWER \n" + "cost: " + ogrePow * 10 + " bugs";
-        minionButtonText.text = "MINION \n" + "cost: " + (100 * minion + 100) + " bugs";
+        ogrePowButtText.text = "cost: " + ogrePow * 10 + " bugs";
+        minionButtonText.text = "cost: " + (100 * minion + 100) + " bugs";
         //villageButtonText.text = "DESTROY VILLAGE \n" + "cost: 20 Ogre Power";
     }
 
@@ -68,10 +69,11 @@ public class ClickForScore : MonoBehaviour
 
             bugsText.text = "Bugs: " + bugs;
             ogrePowText.text = "Ogre Power: " + ogrePow;
-            ogrePowButtText.text = "OGRE POWER \n" + "cost: " + ogrePow * 10 + " bugs";
+            ogrePowButtText.text = "cost: " + ogrePow * 10 + " bugs";
 
             villagePower = Mathf.Pow(village, village);
-            villageButtonText.text = "DESTROY VILLAGE \n" + "cost: EVERYTHING & minimum" + (villagePower * 10 + 10) + " Ogre Power";
+            villagePrint = villagePower * 10 + 10;
+            villageButtonText.text = "cost: EVERYTHING & min" + villagePrint + " Ogre Power";
 
             if (ogrePow >= villagePower * 10 + 10)
             {
@@ -99,7 +101,7 @@ public class ClickForScore : MonoBehaviour
             minion += 1;
             bugsText.text = "Bugs: " + bugs;
             minionText.text = "Minion: " + minion;
-            minionButtonText.text = "MINION \n" + "cost: " + (100 * minion + 100) + " bugs";
+            minionButtonText.text = "cost: " + (100 * minion + 100) + " bugs";
 
             if (bugs <= ogrePow * 10)
             {
@@ -149,8 +151,12 @@ public class ClickForScore : MonoBehaviour
             ogrePowText.text = "Ogre Power: " + ogrePow;
             minionText.text = "Minion: " + minion;
             villageText.text = "Village: " + village;
-            ogrePowButtText.text = "OGRE POWER \n" + "cost: " + ogrePow * 10 + " bugs";
-            minionButtonText.text = "MINION \n" + "cost: " + (100 * minion + 100) + " bugs";
+            ogrePowButtText.text = "cost: " + ogrePow * 10 + " bugs";
+            minionButtonText.text = "cost: " + (100 * minion + 100) + " bugs";
+
+            villagePower = Mathf.Pow(village, village);
+            villagePrint = villagePower * 10 + 10;
+            villageButtonText.text = "cost: EVERYTHING & min" + villagePrint + " Ogre Power";
             
 
 
