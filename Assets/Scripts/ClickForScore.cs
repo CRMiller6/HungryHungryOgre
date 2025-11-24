@@ -31,8 +31,9 @@ public class ClickForScore : MonoBehaviour
     public TMP_Text villageButtonText;
     private float villagePower;
     private float villagePrint;
+    //add villages at 100 oger pow
 
-    //add villages at 10 oger pow
+    public float buyMultiplier;
 
     void Start()
     {
@@ -126,7 +127,7 @@ public class ClickForScore : MonoBehaviour
             second -= 1;
             bugsText.text = "Bugs: " + bugs;
 
-            if (bugs <= ogrePow * 10)
+            if (bugs < ogrePow * 10)
             {
                 ogrePowButton.interactable = false;
             }
