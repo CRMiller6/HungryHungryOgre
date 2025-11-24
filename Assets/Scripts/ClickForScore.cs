@@ -31,26 +31,135 @@ public class ClickForScore : MonoBehaviour
     public TMP_Text villageButtonText;
     private float villagePower;
     private float villagePrint;
-    //add villages at 100 oger pow
+    //add villages at 100 oger pow?
 
     public int buyAmountMultiplier = 1;
+    public float ogrePowMultiCost;
+    public float ogrePowIterateCost;
+    public float minionMultiCost = 1;
+    public float minionIterateCost;
+    public float villageMultiCost;
+    public float villageIterateCost;
+    public float vPowIterate;
+    private char multiCharValueIdentifyer = '1';
 
     void Start()
     {
+        CostAnalasis();
         ogrePowButton.interactable = false;
         minionButton.interactable = false;
         villageButton.interactable = false;
-        CostAnalasis();
+        BuyCharManager();
+    }
+
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            multiCharValueIdentifyer = '1';
+            BuyCharManager();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            multiCharValueIdentifyer = '2';
+            BuyCharManager();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            multiCharValueIdentifyer = '3';
+            BuyCharManager();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            multiCharValueIdentifyer = '4';
+            BuyCharManager();
+        }
+
+        second += Time.deltaTime;
+        if (second >= secondInt)
+        {
+            bugs += minion;
+            second -= 1;
+            bugsText.text = "Bugs: " + bugs;
+
+            CostAnalasis();          
+        }   
+    }
+
+    public void BuyCharManager()
+    {
+        if (multiCharValueIdentifyer == '1')
+        {
+            BuyOne();
+        }
+
+        if (multiCharValueIdentifyer == '2')
+        {
+            BuyFive();
+        }
+
+        if (multiCharValueIdentifyer == '3')
+        {
+            BuyTen();
+        }
+
+        if (multiCharValueIdentifyer == '4')
+        {
+            BuyOneHundred();
+        }
     }
 
     public void BuyOne()
     {
         buyAmountMultiplier = 1;
+
+        ogrePowMultiCost = ogrePow * 10;
+
+        minionMultiCost = 100 * minion + 100;
+
+        vPowIterate = Mathf.Pow(village, 2);
+        villageMultiCost = vPowIterate * 10 + 10;
+        
+        CostAnalasis();
     }
 
     public void BuyFive()
     {
         buyAmountMultiplier = 5;
+
+        //ogre
+        ogrePowMultiCost = 0;
+        ogrePowIterateCost = ogrePow;
+
+        //minion
+        minionMultiCost = 0;
+        minionIterateCost = minion;
+
+        //village
+        villageMultiCost = 0;
+        villageIterateCost = village;
+        vPowIterate = 0;
+
+        for (int iterateFive = 0; iterateFive < 5; iterateFive++)
+        {
+            //bugs >= ogrePow * 10
+            ogrePowMultiCost += ogrePowIterateCost * 10;
+            ogrePowIterateCost += 1;
+
+            //bugs >= 100 * minion + 100
+            minionMultiCost += 100 * minionIterateCost + 100;
+            minionIterateCost += 1;
+
+            //villagePower = Mathf.Pow(village, 2);
+            //villagePrint = villagePower * 10 + 10;
+            vPowIterate = Mathf.Pow(villageIterateCost, 2);
+            villageMultiCost += vPowIterate * 10 + 10;
+            villageIterateCost += 1;
+        }
+        CostAnalasis();
     }
 
     public void BuyTen()
@@ -58,37 +167,43 @@ public class ClickForScore : MonoBehaviour
         buyAmountMultiplier = 10;
     }
 
+    public void BuyOneHundred()
+    {
+        buyAmountMultiplier = 100;
+    }
+
     public void CostAnalasis()
     {
-        ogrePowButtText.text = "cost: " + ogrePow * 10 * buyAmountMultiplier + " bugs";
-        minionButtonText.text = "cost: " + (100 * minion + 100 * buyAmountMultiplier) + " bugs";
+        ogrePowButtText.text = "cost: " + ogrePowMultiCost + " bugs";
 
-        villagePower = Mathf.Pow(village * buyAmountMultiplier, 2);
-        villagePrint = villagePower * 10 + 10;
-        villageButtonText.text = "cost: EVERYTHING & min" + villagePrint + " Ogre Power";
+        minionButtonText.text = "cost: " + minionMultiCost + " bugs";
 
-        if (bugs >= ogrePow * 10 * buyAmountMultiplier)
+        villageButtonText.text = "cost: EVERYTHING    Req: " + villageMultiCost + " Ogre Power";
+
+        //OPw
+        if (bugs >= ogrePowMultiCost)
         {
             ogrePowButton.interactable = true;
         }
-        else if (bugs < ogrePow * 10 * buyAmountMultiplier)
+        else if (bugs < ogrePowMultiCost)
         {
             ogrePowButton.interactable = false;
         }
-
-        if (bugs >= 100 * minion + 100 * buyAmountMultiplier)
+        //Min
+        if (bugs >= minionMultiCost)
         {
             minionButton.interactable = true;
         }
-        else if (bugs < 100 * minion + 100 * buyAmountMultiplier)
+        else if (bugs < minionMultiCost)
         {
             minionButton.interactable = false;
         }
-        if (ogrePow >= villagePrint)
+        //Vil
+        if (ogrePow >= villageMultiCost)
         {
             villageButton.interactable = true;
         }
-        else if (ogrePow < villagePrint)
+        else if (ogrePow < villageMultiCost)
         {
             villageButton.interactable = false;
         }
@@ -104,71 +219,32 @@ public class ClickForScore : MonoBehaviour
 
     public void OgrePowOnClick()
     {
-        if (bugs >= ogrePow * 10 * buyAmountMultiplier)
+        if (bugs >= ogrePowMultiCost)
         {
-            bugs -= ogrePow * 10 * buyAmountMultiplier;
+            bugs -= ogrePowMultiCost;
             ogrePow += 1 * buyAmountMultiplier;
 
             bugsText.text = "Bugs: " + bugs;
             ogrePowText.text = "Ogre Power: " + ogrePow;
-            CostAnalasis();
+            BuyCharManager();
         }
-
     }
 
     public void MinionOnClick()
     {
-        if (bugs >= 100 * minion + 100 * buyAmountMultiplier)
+        if (bugs >= minionMultiCost)
         {
-            bugs -= 100 * minion + 100 * buyAmountMultiplier;
+            bugs -= minionMultiCost;
             minion += 1 * buyAmountMultiplier;
             bugsText.text = "Bugs: " + bugs;
             minionText.text = "Minion: " + minion;
-            CostAnalasis();
+            BuyCharManager();
         }
-    }
-
-    //
-    
-    public void Update()
-    {
-
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            BuyOne();
-            CostAnalasis();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            BuyFive();
-            CostAnalasis();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            BuyTen();
-            CostAnalasis();
-        }
-
-
-        second += Time.deltaTime;
-        if (second >= secondInt)
-        {
-            bugs += minion;
-            second -= 1;
-            bugsText.text = "Bugs: " + bugs;
-
-            CostAnalasis();          
-        }
-
-        
-        
     }
 
     public void VillageOnClick ()
     {
-        if (ogrePow >= villagePrint)
+        if (ogrePow >= villageMultiCost)
         {
             bugs = 0;
             ogrePow = 1;
@@ -179,14 +255,11 @@ public class ClickForScore : MonoBehaviour
             minionText.text = "Minion: " + minion;
             villageText.text = "Village: " + village;
 
-
-            CostAnalasis();
-
+            BuyCharManager();
 
             ogrePowButton.interactable = false;
             minionButton.interactable = false;
             villageButton.interactable = false;
         }
     }
-
 }
