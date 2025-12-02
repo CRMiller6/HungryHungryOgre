@@ -22,7 +22,7 @@ public class ClickForScore : MonoBehaviour
     public TMP_Text minionButtonText;
 
     public float second = 0.0f;
-    public int secondInt = 1;
+    public float secondIntval = 0.06f;
 
     public int village = 0;
     public TMP_Text villageText;
@@ -32,6 +32,8 @@ public class ClickForScore : MonoBehaviour
     private float villagePower;
     private float villagePrint;
     //add villages at 100 oger pow?
+    //maybe not?
+    //dunno
 
     public int buyAmountMultiplier = 1;
     public float ogrePowMultiCost;
@@ -42,6 +44,7 @@ public class ClickForScore : MonoBehaviour
     public float villageIterateCost;
     public float vPowIterate;
     private char multiCharValueIdentifyer = '1';
+    public int multiBuyIterate;
 
     void Start()
     {
@@ -78,10 +81,20 @@ public class ClickForScore : MonoBehaviour
             BuyCharManager();
         }
 
-        second += Time.deltaTime;
-        if (second >= secondInt)
+        if (Input.GetKeyDown(KeyCode.Alpha0))
         {
-            bugs += minion;
+            multiCharValueIdentifyer = '0';
+            BuyCharManager();
+        }
+        if (multiCharValueIdentifyer == '0')
+        {
+            BuyMax();
+        }
+
+        second += Time.deltaTime;
+        if (second >= secondIntval)
+        {
+            bugs += minion + (minion * village);
             second -= 1;
             bugsText.text = "Bugs: " + bugs;
 
@@ -109,6 +122,11 @@ public class ClickForScore : MonoBehaviour
         if (multiCharValueIdentifyer == '4')
         {
             BuyOneHundred();
+        }
+
+        if (multiCharValueIdentifyer == '0')
+        {
+            BuyMax();
         }
     }
 
@@ -165,11 +183,100 @@ public class ClickForScore : MonoBehaviour
     public void BuyTen()
     {
         buyAmountMultiplier = 10;
+
+        //ogre
+        ogrePowMultiCost = 0;
+        ogrePowIterateCost = ogrePow;
+
+        //minion
+        minionMultiCost = 0;
+        minionIterateCost = minion;
+
+        //village
+        villageMultiCost = 0;
+        villageIterateCost = village;
+        vPowIterate = 0;
+
+        for (int iterateTen = 0; iterateTen < 10; iterateTen++)
+        {
+            //bugs >= ogrePow * 10
+            ogrePowMultiCost += ogrePowIterateCost * 10;
+            ogrePowIterateCost += 1;
+
+            //bugs >= 100 * minion + 100
+            minionMultiCost += 100 * minionIterateCost + 100;
+            minionIterateCost += 1;
+
+            //villagePower = Mathf.Pow(village, 2);
+            //villagePrint = villagePower * 10 + 10;
+            vPowIterate = Mathf.Pow(villageIterateCost, 2);
+            villageMultiCost += vPowIterate * 10 + 10;
+            villageIterateCost += 1;
+        }
+        CostAnalasis();
     }
 
     public void BuyOneHundred()
     {
         buyAmountMultiplier = 100;
+
+        //ogre
+        ogrePowMultiCost = 0;
+        ogrePowIterateCost = ogrePow;
+
+        //minion
+        minionMultiCost = 0;
+        minionIterateCost = minion;
+
+        //village
+        villageMultiCost = 0;
+        villageIterateCost = village;
+        vPowIterate = 0;
+
+        for (int iterateOHundred = 0; iterateOHundred < 100; iterateOHundred++)
+        {
+            //bugs >= ogrePow * 10
+            ogrePowMultiCost += ogrePowIterateCost * 10;
+            ogrePowIterateCost += 1;
+
+            //bugs >= 100 * minion + 100
+            minionMultiCost += 100 * minionIterateCost + 100;
+            minionIterateCost += 1;
+
+            //villagePower = Mathf.Pow(village, 2);
+            //villagePrint = villagePower * 10 + 10;
+            vPowIterate = Mathf.Pow(villageIterateCost, 2);
+            villageMultiCost += vPowIterate * 10 + 10;
+            villageIterateCost += 1;
+            Debug.Log (villageIterateCost);
+        }
+        CostAnalasis();
+    }
+
+    public void BuyMax()
+    {
+        buyAmountMultiplier = 0;
+
+        //ogre
+        ogrePowMultiCost = 0;
+        ogrePowIterateCost = ogrePow;
+
+        //minion
+        minionMultiCost = 0;
+        minionIterateCost = minion;
+
+        //village
+        villageMultiCost = 0;
+        villageIterateCost = village;
+        vPowIterate = 0;
+
+        while (bugs >= ogrePowMultiCost)
+        {
+            ogrePowMultiCost += ogrePowIterateCost * 10;
+            ogrePowIterateCost += 1;
+            buyAmountMultiplier += 1;
+        }
+        ogrePowMultiCost -= ogrePowIterateCost * 10;
     }
 
     public void CostAnalasis()

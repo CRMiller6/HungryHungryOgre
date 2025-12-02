@@ -177,7 +177,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: Press 1 to buy one item at a time, 2 to buy five items at a time, and 3
-    to buy ten items at a time, 4 to buy one hundred at a time
+    to buy ten items at a time
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -980,7 +980,7 @@ MonoBehaviour:
   minionButton: {fileID: 1967193161}
   minionButtonText: {fileID: 387037463}
   second: 0
-  secondInt: 1
+  secondIntval: 0.06
   village: 0
   villageText: {fileID: 197829265}
   villageBox: {fileID: 197829263}
@@ -988,8 +988,12 @@ MonoBehaviour:
   villageButtonText: {fileID: 1196438142}
   buyAmountMultiplier: 1
   ogrePowMultiCost: 0
+  ogrePowIterateCost: 0
   minionMultiCost: 0
+  minionIterateCost: 0
   villageMultiCost: 0
+  villageIterateCost: 0
+  vPowIterate: 0
 --- !u!114 &446676515
 MonoBehaviour:
   m_ObjectHideFlags: 0
