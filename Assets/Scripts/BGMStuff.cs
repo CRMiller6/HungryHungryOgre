@@ -1,27 +1,46 @@
 using UnityEngine;
-using TMPro; // For the standard UI Dropdown
-    // using TMPro; // If using TextMeshPro Dropdown
+using TMPro;
+using System.Collections;
+using UnityEngine.Timeline;
+using UnityEngine.UI; // For the standard UI Dropdown
+                      // using TMPro; // If using TextMeshPro Dropdown
 
-    public class BGMSuff : MonoBehaviour
+public class BGMSuff : MonoBehaviour
     {
-        public TMP_Dropdown myDropdown; // Assign this in the Inspector
-         
-        public void DropDown(int index)
+        public AudioSource bgmscource;
+        public TMP_Dropdown dropdown; // Assign this in the Inspector
+        public AudioClip trackA;
+        public AudioClip trackB;
+        void Start()
         {
-            
-            switch (index)
-            {
-                case 0:
-                //audio1
-                break;
-                case 1:
-                //audio2 
-                break;
-                case 2:
-                //nothing
-                break;
-            }
+            dropdown.onValueChanged.AddListener(OnDropdownChanged);
+            OnDropdownChanged(dropdown.value);
 
             
         }
+
+        void OnDropdownChanged(int index)
+    {
+        switch (index)
+        { 
+            case 0: //TrackA
+                PlayTrack(trackA);
+                break;
+                
+            case 1: //TrackB
+                PlayTrack(trackB);
+                break;
+                
+            case 2: //no bgm
+                bgmscource.Stop();
+                break;
+        }
+    }
+    void PlayTrack(AudioClip clip)
+    {
+        if (clip == null);
+        bgmscource.clip = clip;
+        bgmscource.Play();
+    }
+
     }
