@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: a2e3a395ddaed404facae96ef2ca2f30
+guid: 202d496fc18f4134bb4a5516f076c8b8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2735272343457336612
-    second: HHO_Ogre_0
+      213: 423215792133369614
+    second: HHO_Villagers_0
   - first:
-      213: -1400030018141232670
-    second: HHO_Ogre_1
+      213: -5618482805891153884
+    second: HHO_Villagers_1
   - first:
-      213: -6498226968294520664
-    second: HHO_Ogre_2
+      213: 483150671745698863
+    second: HHO_Villagers_2
   - first:
-      213: -89648701989979796
-    second: HHO_Ogre_3
+      213: -6847086014214023971
+    second: HHO_Villagers_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,7 +109,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: HHO_Ogre_0
+      name: HHO_Villagers_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 42d89bb44b3a5f520800000000000000
-      internalID: 2735272343457336612
+      spriteID: e0fe17945809fd500800000000000000
+      internalID: 423215792133369614
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HHO_Ogre_1
+      name: HHO_Villagers_1
       rect:
         serializedVersion: 2
         x: 64
@@ -146,14 +146,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2e1eecdbd18129ce0800000000000000
-      internalID: -1400030018141232670
+      spriteID: 420c732f7a32702b0800000000000000
+      internalID: -5618482805891153884
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HHO_Ogre_2
+      name: HHO_Villagers_2
       rect:
         serializedVersion: 2
         x: 0
@@ -168,14 +168,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8a801fc5009a1d5a0800000000000000
-      internalID: -6498226968294520664
+      spriteID: f2cc462e9fe74b600800000000000000
+      internalID: 483150671745698863
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HHO_Ogre_3
+      name: HHO_Villagers_3
       rect:
         serializedVersion: 2
         x: 64
@@ -190,8 +190,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c69ff430bf081cef0800000000000000
-      internalID: -89648701989979796
+      spriteID: dd45a382c834af0a0800000000000000
+      internalID: -6847086014214023971
       vertices: []
       indices: 
       edges: []
@@ -200,7 +200,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 4bca1a8a62179be44b866da7a8b69d39
+    spriteID: 89929f19e5ad0b74695b1717589f071e
     internalID: 0
     vertices: []
     indices: 
@@ -210,10 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      HHO_Ogre_0: 2735272343457336612
-      HHO_Ogre_1: -1400030018141232670
-      HHO_Ogre_2: -6498226968294520664
-      HHO_Ogre_3: -89648701989979796
+      HHO_Villagers_0: 423215792133369614
+      HHO_Villagers_1: -5618482805891153884
+      HHO_Villagers_2: 483150671745698863
+      HHO_Villagers_3: -6847086014214023971
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
