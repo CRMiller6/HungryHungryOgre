@@ -5,9 +5,18 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 580267c7734559d45bca610c2533af92
+  - enabled: 1
+    path: Assets/Scenes/ClickerMain.unity
+    guid: e6571c6e35c224b42acae8bcbf6657f0
+  - enabled: 1
+    path: Assets/Scenes/DestroyVillage.unity
+    guid: a1020966dfba3430984690c60f78289e
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
