@@ -8,6 +8,8 @@ TagManager:
   - EnemyDeath
   - BGDeath
   - Enemy
+  - TopHouse
+  - BottomHouse
   layers:
   - Default
   - TransparentFX

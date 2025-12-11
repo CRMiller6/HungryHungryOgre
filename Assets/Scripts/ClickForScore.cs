@@ -50,6 +50,7 @@ public class ClickForScore : MonoBehaviour
         {
             village = VDSingle.instance.destroyVillageTrack;
         }
+        villageText.text = "Village: " + VDSingle.instance.destroyVillageTrack;
         CostAnalasis();
         ogrePowButton.interactable = false;
         henchmanButton.interactable = false;
@@ -304,7 +305,6 @@ public class ClickForScore : MonoBehaviour
             bugsText.text = "Bugs: " + bugs;
             ogrePowText.text = "Ogre Power: " + ogrePow;
             henchmanText.text = "Henchman: " + henchman;
-            villageText.text = "Village: " + village;
 
             BuyCharManager();
 
