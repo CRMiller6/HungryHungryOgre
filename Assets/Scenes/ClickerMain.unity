@@ -1245,10 +1245,10 @@ MonoBehaviour:
   ogrePowButton: {fileID: 904850037}
   ogrePowButtText: {fileID: 495721474}
   henchman: 0
-  henchmanText: {fileID: 0}
-  henchmanBox: {fileID: 0}
-  henchmanButton: {fileID: 0}
-  henchmanButtonText: {fileID: 0}
+  henchmanText: {fileID: 2002782596}
+  henchmanBox: {fileID: 2002782593}
+  henchmanButton: {fileID: 1967193161}
+  henchmanButtonText: {fileID: 387037463}
   second: 0
   secondIntval: 0.06
   village: 0

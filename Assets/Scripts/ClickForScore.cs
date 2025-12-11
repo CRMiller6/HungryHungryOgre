@@ -46,6 +46,10 @@ public class ClickForScore : MonoBehaviour
 
     void Start()
     {
+        if(VDSingle.instance != null)
+        {
+            village = VDSingle.instance.destroyVillageTrack;
+        }
         CostAnalasis();
         ogrePowButton.interactable = false;
         henchmanButton.interactable = false;
@@ -307,6 +311,8 @@ public class ClickForScore : MonoBehaviour
             ogrePowButton.interactable = false;
             henchmanButton.interactable = false;
             villageButton.interactable = false;
+
+            VDSingle.instance.destroyVillageTrack = village;
             SceneManager.LoadScene("DestroyVillage");
         }
     }
