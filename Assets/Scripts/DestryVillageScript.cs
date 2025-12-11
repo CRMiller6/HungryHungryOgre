@@ -80,6 +80,11 @@ public class DestryVillageScript : MonoBehaviour
             winQT = true;
         }
 
+        if (winQT == true && quickTimer >= 1)
+        {
+            winQT = false;
+        }
+
         if (quickTimer >= three && playerInput != quickLetter)
         {
             //Debug.Log (quickTimer);

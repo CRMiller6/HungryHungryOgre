@@ -1,48 +1,51 @@
 using System.Buffers.Text;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class DVSpawner : MonoBehaviour
 {
-
-    // public GameObject spawnBgPrefab;
-    // public Transform spawnBgPoint;
-    // public float bgSpawnDistance = 5f;
-    // private GameObject currBg;
-    // private Vector3 ogBgSpawn;
-    public Transform bG;
+    public List<Transform> backgroundObjects;
+    public List<Transform> enemyObjects;
+    public string moveBackground = "Background";
     public float baseSpeed = 5f;
     public float playerBoost = 10f;
     private float currentSpeed;
     public DestryVillageScript dashin;
-    public int dashTimer = 1;
+    public float dashTimer = 0.05f;
     public float iNeedDeltaTime;
+
+
 
     void Start()
     {
         currentSpeed = baseSpeed;
-        iNeedDeltaTime += Time.deltaTime;
-    //     ogBgSpawn = spawnBgPoint.position;
-    //     SpawnPrefab();
     }
 
     void Update()
     {
-        
-
         if (dashin.winQT == true)
         {
-            currentSpeed = baseSpeed + playerBoost;
+            currentSpeed += baseSpeed + playerBoost;
             iNeedDeltaTime = 0;
+
+            foreach (Transform enmyTransform in enemyObjects)
+            {
+                enmyTransform.Translate(Vector3.left * baseSpeed * Time.deltaTime);
+            }
         }
+
+        else if (dashin.winQT == false)
+        {
+            foreach (Transform enmyTransform in enemyObjects)
+            {
+                enmyTransform.Translate(Vector3.right * 1 * Time.deltaTime);
+            }
+        }
+
         else
         {
             currentSpeed = baseSpeed;
         }
-
-
-        bG.Translate(Vector3.left * currentSpeed * Time.deltaTime);
-
-        Debug.Log(currentSpeed);
 
         iNeedDeltaTime += Time.deltaTime;
         if (dashTimer >= iNeedDeltaTime)
@@ -50,17 +53,12 @@ public class DVSpawner : MonoBehaviour
             currentSpeed = baseSpeed;
         }
 
-        
-    //     float distance = Vector3.Distance(currBg.transform.position, ogBgSpawn);
+        foreach (Transform bgTransform in backgroundObjects)
+        {
+            bgTransform.Translate(Vector3.left * currentSpeed * Time.deltaTime);
+        }
+        Debug.Log(currentSpeed);
+    }    
 
-    //     if (distance >= bgSpawnDistance)
-    //     {
-    //         SpawnPrefab();
-    //     }
-    }
 
-    // void SpawnPrefab()
-    // {
-    //     currBg = Instantiate(currBg, ogBgSpawn, spawnBgPoint.rotation);
-    // }
 }
