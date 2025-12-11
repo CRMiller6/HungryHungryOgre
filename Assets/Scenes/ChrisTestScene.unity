@@ -1509,6 +1509,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1656873965}
   - component: {fileID: 1656873966}
+  - component: {fileID: 1656873967}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -1543,8 +1544,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b700c7ed19c92834ea47c714a50c564b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgmscource: {fileID: 372308602}
-  dropdown: {fileID: 1536331908}
+--- !u!114 &1656873967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1656873964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97b73f583411be94ba2336fd491cb3ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bgmSource: {fileID: 372308602}
   trackA: {fileID: 8300000, guid: 6c79808ee8656e246acca39aa19b2f31, type: 3}
   trackB: {fileID: 8300000, guid: 37862a94b2efd114e931f2e83c8c6015, type: 3}
 --- !u!1 &1881447860
