@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using TMPro;
 public class BGMStuff : MonoBehaviour
 {
     public AudioSource bgmSource;
@@ -53,4 +53,20 @@ public class BGMStuff : MonoBehaviour
         bgmSource.clip = clip;
         bgmSource.Play();
     }
+
+    public void SetVolume(float value)
+{
+    if (bgmSource != null)
+        bgmSource.volume = value;
+}
+public GameObject optionsMenu;
+
+public void ToggleOptionsMenu()
+{
+    optionsMenu.SetActive(!optionsMenu.activeSelf);
+}
+public void CloseOptionsMenu()
+{
+    optionsMenu.SetActive(false);
+}
 }
