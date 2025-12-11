@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using UnityEngine.SceneManagement;
 
 public class ClickForScore : MonoBehaviour
 {
@@ -306,6 +307,7 @@ public class ClickForScore : MonoBehaviour
             ogrePowButton.interactable = false;
             henchmanButton.interactable = false;
             villageButton.interactable = false;
+            SceneManager.LoadScene("DestroyVillage");
         }
     }
 }

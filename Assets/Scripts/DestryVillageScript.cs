@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using UnityEngine.SceneManagement;
 
 public class DestryVillageScript : MonoBehaviour
 {
@@ -10,7 +11,6 @@ public class DestryVillageScript : MonoBehaviour
     public float quickTimer = 0;
     public float sceneTimer;
     private int three = 3;
-    private float halfSec = 0.5f;
     public string quickLetter;
     public TMP_Text quickText;
     public GameObject qText;
@@ -22,6 +22,7 @@ public class DestryVillageScript : MonoBehaviour
     public float countDown = 60.0f;
     private int one = 1;
     public int letterRepeater = 0;
+    public bool winQT = false;
 
 
     
@@ -76,6 +77,7 @@ public class DestryVillageScript : MonoBehaviour
             dVScore += 0.05f;
             Debug.Log ("did QT");
             letterRepeater = 0;
+            winQT = true;
         }
 
         if (quickTimer >= three && playerInput != quickLetter)
@@ -88,17 +90,13 @@ public class DestryVillageScript : MonoBehaviour
             //Debug.Log (quickTimer);
             Debug.Log("lose quickTime");
             letterRepeater = 0;
+            winQT = false;
         }
 
         if (countDown <= 0)
         {
-            //change back to clicker scene
+            SceneManager.LoadScene("ClickerMain");
         }
-    }
-
-    public void QuickTime()
-    {
-
     }
 
     public void TextUpdate()
