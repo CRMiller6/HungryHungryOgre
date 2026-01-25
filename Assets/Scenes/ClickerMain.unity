@@ -2551,6 +2551,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyVillageTrack: 0
+  ogreKillScore: 0
 --- !u!4 &1549168115
 Transform:
   m_ObjectHideFlags: 0
@@ -3042,7 +3043,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Minions: 0'
+  m_text: 'Henchman: 0'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: df0cd2d89d49ed544bf3c72a1cebd442, type: 2}
   m_sharedMaterial: {fileID: 3624224639106551338, guid: df0cd2d89d49ed544bf3c72a1cebd442, type: 2}

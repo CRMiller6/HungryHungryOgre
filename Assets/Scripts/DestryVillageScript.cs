@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class DestryVillageScript : MonoBehaviour
 {
-
+    public EnemyScript enemyScript;
+    
     public string[] Alphabet = new string[26] {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
     public float quickTimer = 0;
     public float sceneTimer;
@@ -23,17 +24,19 @@ public class DestryVillageScript : MonoBehaviour
     private int one = 1;
     public int letterRepeater = 0;
     public bool winQT = false;
+    public long kills;
 
 
     
     void Start()
     {
-        //quickLetter = Alphabet[UnityEngine.Random.Range(0, Alphabet.Length)];
+        
     
     }
 
     void Update()
     {
+        kills = enemyScript.killCount;
         
         timerVounter += Time.deltaTime;
         if (timerVounter >= one)
@@ -100,6 +103,7 @@ public class DestryVillageScript : MonoBehaviour
 
         if (countDown <= 0)
         {
+            VDSingle.instance.ogreKillScore = kills;
             SceneManager.LoadScene("ClickerMain");
         }
     }

@@ -21,6 +21,7 @@ public class ClickForScore : MonoBehaviour
     public GameObject henchmanBox;
     public Button henchmanButton;
     public TMP_Text henchmanButtonText;
+    public long henchmanMultiplier;
 
     public float second = 0.0f;
     public float secondIntval = 0.1f;
@@ -49,6 +50,8 @@ public class ClickForScore : MonoBehaviour
         if(VDSingle.instance != null)
         {
             village = VDSingle.instance.destroyVillageTrack;
+            henchmanMultiplier = VDSingle.instance.ogreKillScore;
+            
         }
         villageText.text = "Village: " + VDSingle.instance.destroyVillageTrack;
         CostAnalasis();
@@ -97,7 +100,7 @@ public class ClickForScore : MonoBehaviour
         second += Time.deltaTime;
         if (second >= secondIntval)
         {
-            bugs += henchman + (henchman * village);
+            bugs += henchman + (henchman * henchmanMultiplier);
             second -= 1;
             bugsText.text = "Bugs: " + bugs;          
         }
@@ -230,7 +233,7 @@ public class ClickForScore : MonoBehaviour
 
         henchmanButtonText.text = "cost: " + henchmanMultiCost + " bugs";
 
-        villageButtonText.text = "cost: EVERYTHING    Req: " + villageMultiCost + " Ogre Power";
+        villageButtonText.text = "takes: EVERYTHING    Req: " + villageMultiCost + " Ogre Power";
 
         //OPw
         if (bugs >= ogrePowMultiCost)

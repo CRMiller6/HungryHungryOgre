@@ -4,6 +4,7 @@ public class VDSingle : MonoBehaviour
 {
     public static VDSingle instance;
     public long destroyVillageTrack;
+    public long ogreKillScore;
 
     public static VDSingle GetInstance()
     {

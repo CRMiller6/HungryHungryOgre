@@ -6126,6 +6126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2c793703b3a04c84a74e41e9d25f758, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyScript: {fileID: 531415252}
   Alphabet:
   - A
   - B
@@ -6166,6 +6167,7 @@ MonoBehaviour:
   countDown: 60
   letterRepeater: 0
   winQT: 0
+  kills: 0
 --- !u!4 &2146183812
 Transform:
   m_ObjectHideFlags: 0
