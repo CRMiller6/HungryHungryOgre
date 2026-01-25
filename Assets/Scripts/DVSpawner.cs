@@ -21,7 +21,7 @@ public class DVSpawner : MonoBehaviour
         currentSpeed = baseSpeed;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (dashin.winQT == true)
         {
@@ -32,6 +32,11 @@ public class DVSpawner : MonoBehaviour
             {
                 enmyTransform.Translate(Vector3.left * baseSpeed * Time.deltaTime);
             }
+
+            foreach (Transform bgTransform in backgroundObjects)
+            {
+            bgTransform.Translate(Vector3.left * (currentSpeed + (playerBoost /2)) * Time.deltaTime);
+            }
         }
 
         else if (dashin.winQT == false)
@@ -39,6 +44,11 @@ public class DVSpawner : MonoBehaviour
             foreach (Transform enmyTransform in enemyObjects)
             {
                 enmyTransform.Translate(Vector3.right * 1 * Time.deltaTime);
+            }
+
+            foreach (Transform bgTransform in backgroundObjects)
+            {
+            bgTransform.Translate(Vector3.left * currentSpeed * Time.deltaTime);
             }
         }
 
@@ -53,10 +63,7 @@ public class DVSpawner : MonoBehaviour
             currentSpeed = baseSpeed;
         }
 
-        foreach (Transform bgTransform in backgroundObjects)
-        {
-            bgTransform.Translate(Vector3.left * currentSpeed * Time.deltaTime);
-        }
+        
         Debug.Log(currentSpeed);
     }    
 
