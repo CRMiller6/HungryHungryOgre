@@ -94,7 +94,7 @@ public class ClickForScore : MonoBehaviour
         }
         if (multiCharValueIdentifyer == '0')
         {
-            BuyMax();
+            BuyOne();
         }
 
         second += Time.deltaTime;
@@ -113,7 +113,6 @@ public class ClickForScore : MonoBehaviour
         {
             oPBuyAmountMultiplier = 1;
             henBuyAmountMultiplier = 1;
-            vilBuyAmountMultiplier = 1;
             BuyOne();
         }
 
@@ -122,7 +121,6 @@ public class ClickForScore : MonoBehaviour
             iterateNumber = 5;
             oPBuyAmountMultiplier = 5;
             henBuyAmountMultiplier = 5;
-            vilBuyAmountMultiplier = 5;
             BuyMulti();
         }
 
@@ -131,7 +129,6 @@ public class ClickForScore : MonoBehaviour
             iterateNumber = 10;
             oPBuyAmountMultiplier = 10;
             henBuyAmountMultiplier = 10;
-            vilBuyAmountMultiplier = 10;
             BuyMulti();
         }
 
@@ -140,7 +137,6 @@ public class ClickForScore : MonoBehaviour
             iterateNumber = 100;
             oPBuyAmountMultiplier = 100;
             henBuyAmountMultiplier = 100;
-            vilBuyAmountMultiplier = 100;
             BuyMulti();
         }
 
@@ -172,11 +168,6 @@ public class ClickForScore : MonoBehaviour
         henchmanMultiCost = 0;
         henchmanIterateCost = henchman;
 
-        //village
-        villageMultiCost = 0;
-        villageIterateCost = village;
-        vPowIterate = 0;
-
         for (int iterate = 0; iterate < iterateNumber; iterate++)
         {
             //bugs >= ogrePow * 10
@@ -187,13 +178,11 @@ public class ClickForScore : MonoBehaviour
             //bugs >= 100 * henchman + 100
             henchmanMultiCost += 100 * henchmanIterateCost + 100;
             henchmanIterateCost += 1;
-
-            //villagePower = Mathf.Pow(village, 2);
-            //villagePrint = villagePower * 10 + 10;
-            vPowIterate = village * village;
-            villageMultiCost += vPowIterate * 10 + 10;
-            villageIterateCost += 1;
         }
+
+        vPowIterate = village * village;
+        villageMultiCost = vPowIterate * 10 + 10;
+
         CostAnalasis();
     }
 
@@ -207,24 +196,36 @@ public class ClickForScore : MonoBehaviour
         henchmanMultiCost = 0;
         henchmanIterateCost = henchman;
 
-        //village
-        villageMultiCost = 0;
-        villageIterateCost = village;
-        vPowIterate = 0;
-
-        while (bugs >= ogrePowMultiCost + ogrePowIterateCost * 10)
+        if (bugs >= ogrePowMultiCost + ogrePowIterateCost * 10)
         {
-            ogrePowMultiCost += ogrePowIterateCost * 10;
-            ogrePowIterateCost += 1;
-            oPBuyAmountMultiplier += 1;
+            while (bugs >= ogrePowMultiCost + ogrePowIterateCost * 10)
+            {
+                ogrePowMultiCost += ogrePowIterateCost * 10;
+                ogrePowIterateCost += 1;
+                oPBuyAmountMultiplier += 1;
+            }
+        }
+        else
+        {
+            ogrePowMultiCost = ogrePow * 10;
         }
 
-        while (bugs >= henchmanMultiCost + 100 * henchmanIterateCost + 100)
+        if (bugs >= henchmanMultiCost + 100 * henchmanIterateCost + 100)
         {
-            henchmanMultiCost += 100 * henchmanIterateCost + 100;
-            henchmanIterateCost += 1;
-            henBuyAmountMultiplier += 1;
+            while (bugs >= henchmanMultiCost + 100 * henchmanIterateCost + 100)
+            {
+                henchmanMultiCost += 100 * henchmanIterateCost + 100;
+                henchmanIterateCost += 1;
+                henBuyAmountMultiplier += 1;
+            }
         }
+        else
+        {
+            henchmanMultiCost = 100 * henchman + 100;
+        }
+
+        vPowIterate = village * village;
+        villageMultiCost = vPowIterate * 10 + 10;
     }
 
     public void CostAnalasis()
