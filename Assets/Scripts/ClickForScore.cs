@@ -100,7 +100,7 @@ public class ClickForScore : MonoBehaviour
         second += Time.deltaTime;
         if (second >= secondIntval)
         {
-            bugs += henchman + (henchman * henchmanMultiplier);
+            bugs += henchman + (henchman * (henchmanMultiplier * village) / 2);
             second -= 1;
             bugsText.text = "Bugs: " + bugs;          
         }
