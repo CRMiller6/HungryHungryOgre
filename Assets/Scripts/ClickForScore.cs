@@ -45,6 +45,9 @@ public class ClickForScore : MonoBehaviour
     public long iterateNumber;
     private char multiCharValueIdentifyer = '1';
 
+    public GameObject advice;
+    public GameObject greaterAdvice;
+
     void Start()
     {
         if(VDSingle.instance != null)
@@ -59,6 +62,15 @@ public class ClickForScore : MonoBehaviour
         henchmanButton.interactable = false;
         villageButton.interactable = false;
         BuyCharManager();
+
+        if (village >= 3)
+        {
+            advice.SetActive(true);
+        }
+        if (village >= 6)
+        {
+            greaterAdvice.SetActive(true);
+        }
     }
 
     public void Update()
@@ -87,14 +99,22 @@ public class ClickForScore : MonoBehaviour
             BuyCharManager();
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha0))
+        if (Input.GetKeyDown(KeyCode.Alpha5))
         {
-            multiCharValueIdentifyer = '0';
+            multiCharValueIdentifyer = '5';
             BuyCharManager();
         }
-        if (multiCharValueIdentifyer == '0')
+
+        if (Input.GetKeyDown(KeyCode.Alpha6))
         {
-            BuyOne();
+            multiCharValueIdentifyer = '6';
+            BuyCharManager();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            multiCharValueIdentifyer = '1';
+            BuyCharManager();
         }
 
         second += Time.deltaTime;
@@ -111,6 +131,7 @@ public class ClickForScore : MonoBehaviour
     {
         if (multiCharValueIdentifyer == '1')
         {
+            iterateNumber = 1;
             oPBuyAmountMultiplier = 1;
             henBuyAmountMultiplier = 1;
             BuyOne();
@@ -140,9 +161,20 @@ public class ClickForScore : MonoBehaviour
             BuyMulti();
         }
 
-        if (multiCharValueIdentifyer == '0')
+        if (multiCharValueIdentifyer == '5')
         {
-            BuyMax();
+            iterateNumber = 500;
+            oPBuyAmountMultiplier = 500;
+            henBuyAmountMultiplier = 500;
+            BuyMulti();
+        }
+
+        if (multiCharValueIdentifyer == '5')
+        {
+            iterateNumber = 1000;
+            oPBuyAmountMultiplier = 1000;
+            henBuyAmountMultiplier = 1000;
+            BuyMulti();
         }
     }
 
@@ -186,47 +218,6 @@ public class ClickForScore : MonoBehaviour
         CostAnalasis();
     }
 
-    public void BuyMax()
-    {
-        //ogre
-        ogrePowMultiCost = 0;
-        ogrePowIterateCost = ogrePow;
-
-        //henchman
-        henchmanMultiCost = 0;
-        henchmanIterateCost = henchman;
-
-        if (bugs >= ogrePowMultiCost + ogrePowIterateCost * 10)
-        {
-            while (bugs >= ogrePowMultiCost + ogrePowIterateCost * 10)
-            {
-                ogrePowMultiCost += ogrePowIterateCost * 10;
-                ogrePowIterateCost += 1;
-                oPBuyAmountMultiplier += 1;
-            }
-        }
-        else
-        {
-            ogrePowMultiCost = ogrePow * 10;
-        }
-
-        if (bugs >= henchmanMultiCost + 100 * henchmanIterateCost + 100)
-        {
-            while (bugs >= henchmanMultiCost + 100 * henchmanIterateCost + 100)
-            {
-                henchmanMultiCost += 100 * henchmanIterateCost + 100;
-                henchmanIterateCost += 1;
-                henBuyAmountMultiplier += 1;
-            }
-        }
-        else
-        {
-            henchmanMultiCost = 100 * henchman + 100;
-        }
-
-        vPowIterate = village * village;
-        villageMultiCost = vPowIterate * 10 + 10;
-    }
 
     public void CostAnalasis()
     {
@@ -278,7 +269,7 @@ public class ClickForScore : MonoBehaviour
         if (bugs >= ogrePowMultiCost)
         {
             bugs -= ogrePowMultiCost;
-            ogrePow += 1 * oPBuyAmountMultiplier;
+            ogrePow += 1 * iterateNumber;
 
             bugsText.text = "Bugs: " + bugs;
             ogrePowText.text = "Ogre Power: " + ogrePow;
@@ -291,7 +282,7 @@ public class ClickForScore : MonoBehaviour
         if (bugs >= henchmanMultiCost)
         {
             bugs -= henchmanMultiCost;
-            henchman += 1 * henBuyAmountMultiplier;
+            henchman += 1 * iterateNumber;
             bugsText.text = "Bugs: " + bugs;
             henchmanText.text = "Henchman: " + henchman;
             BuyCharManager();
